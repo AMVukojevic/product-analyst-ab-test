@@ -1,3 +1,4 @@
+![Retention lift by group](images/retention_chart.png)
 # Cookie Cats A/B Test – Impact of Gate Position on Early Retention
 
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/) [![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange)](https://jupyter.org/) [![Licence: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
