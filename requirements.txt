@@ -1,0 +1,10 @@
+# Core data stack
+pandas>=1.5
+numpy>=1.23
+
+# Visualisation
+matplotlib>=3.7
+seaborn>=0.13
+
+# Notebook environment (optional but convenient)
+jupyterlab>=4.0  # or 'notebook' if you prefer the classic UI
