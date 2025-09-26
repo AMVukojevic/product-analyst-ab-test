@@ -5,7 +5,7 @@
 
 ## 1. Executive summary
 
-A controlled experiment on **90 189** new players tested whether moving the first progression gate from level 30 to level 40 would boost early‑stage engagement. The change reduced **Day‑7 retention by 0.8 pp** (p < 0.001). With current acquisition volumes that equates to roughly **7 000 fewer retained users per month** and a measurable decline in lifetime value. I therefore recommend keeping the gate at **level 30**.
+A controlled experiment on **90 189** new players tested whether moving the first progression gate from level 30 to level 40 would boost early‑stage engagement. The change reduced **Day‑7 retention by 0.8 pp** (p < 0.001). The retention drop is directionally negative; converting it into a revenue figure would require internal LTV assumptions and is outside the scope of this public walkthrough. I therefore recommend keeping the gate at **level 30**.
 
 ---
 
@@ -33,7 +33,7 @@ Key columns: `userid`, `version` (control / treatment), `sum_gamerounds`, `ret
 2. **Exploratory analysis** – distributions of game rounds and retention funnels.
 3. **Hypothesis testing** – bootstrap 10 000 samples of the mean retention difference; confirm with two‑sample t‑tests.
 4. **Effect size** – absolute & relative lifts with 95 % CIs.
-5. **Business translation** – convert retention change into user and LTV impact using the internal model.
+5. **What’s next?** – outline how to translate retention change into user and LTV impact once internal monetisation data are available.
 
 ---
 
