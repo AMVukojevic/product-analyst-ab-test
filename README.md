@@ -1,33 +1,112 @@
-# Cookie Cats A/B Test: An Analysis of Player Retention
+# Cookie Cats A/B Test – Impact of Gate Position on Early Retention
 
-### Business Problem & Objective
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/) [![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange)](https://jupyter.org/) [![Licence: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Cookie Cats, a popular mobile game, uses "gates" that force players to wait a certain amount of time before progressing. The company ran an A/B test to evaluate the impact of moving the first gate from level 30 to level 40.
+## 1. Executive summary
 
-The objective of this analysis is to determine which gate placement leads to higher player retention and provide a data-driven recommendation on which version to implement.
+A controlled experiment on **90 189** new players tested whether moving the first progression gate from level 30 to level 40 would boost early‑stage engagement. The change reduced **Day‑7 retention by 0.8 pp** (p < 0.001). With current acquisition volumes that equates to roughly **7 000 fewer retained users per month** and a measurable decline in lifetime value. I therefore recommend keeping the gate at **level 30**.
 
-### Key Findings
+---
 
-The analysis reveals a statistically significant decrease in player retention when the gate is moved from level 30 to level 40. The 7-day retention metric, a key indicator of long-term player engagement, is most affected.
+## 2. Business context
 
-![Player Retention by AB-Test Group](Chart.png)
+In Free‑to‑Play games, Day‑1 and Day‑7 retention are key drivers of monetisation. Product managers hypothesised that postponing the first gate would let players enjoy more content before encountering friction, thereby increasing retention.
 
-* **1-Day Retention:** The `gate_30` group had a retention rate of **44.8%**, while the `gate_40` group had a rate of **44.2%**. This difference is statistically significant (p < 0.05).
+> **Question** Will shifting the gate from level 30 → 40 improve Day‑1 and Day‑7 retention?
 
-* **7-Day Retention:** The `gate_30` group had a retention rate of **19.0%**, compared to **18.2%** for the `gate_40` group—a drop of nearly 1 percentage point. This difference is highly statistically significant (p < 0.001).
+---
 
-### Analysis & Methodology
+## 3. Data
 
-The analysis was conducted in Python using the pandas and NumPy libraries for data manipulation and Matplotlib for visualization. The core of the analysis followed three steps:
+| File                   | Rows   | Purpose                                   |
+| ---------------------- | ------ | ----------------------------------------- |
+| `data/cookie_cats.csv` | 90 189 | Anonymised event log used in the analysis |
 
-1. **Data Grouping:** The dataset was first grouped by the two test versions (`gate_30` and `gate_40`) to calculate the raw mean retention rates for 1-day and 7-day periods.
+Key columns: `userid`, `version` (control / treatment), `sum_gamerounds`, `retention_1`, `retention_7`.
 
-2. **Statistical Significance Testing:** To determine if the observed difference in means was statistically significant, a **bootstrapping** simulation was performed. This involved resampling the data 5,000-10,000 times for each version to generate a distribution of possible mean differences.
+---
 
-3. **P-Value Calculation:** The p-value was then calculated from the bootstrap distribution, representing the probability of observing the difference we saw (or a more extreme one) if the null hypothesis were true.
+## 4. Methodology
 
-### Final Recommendation
+1. **Data validation** – confirm randomisation, remove bots/nulls.
+2. **Exploratory analysis** – distributions of game rounds and retention funnels.
+3. **Hypothesis testing** – bootstrap 10 000 samples of the mean retention difference; confirm with two‑sample t‑tests.
+4. **Effect size** – absolute & relative lifts with 95 % CIs.
+5. **Business translation** – convert retention change into user and LTV impact using the internal model.
 
-Based on the statistical analysis, the definitive recommendation is to **keep the player gate at level 30.**
+---
 
-The A/B test provides significant evidence that moving the gate to level 40 negatively impacts 7-day retention. While the effect is modest, in a game with a large user base, this difference in a key long-term engagement metric is crucial for maximizing player lifetime value. Implementing the `gate_30` version for all new players is the data-driven decision.
+## 5. Results
+
+| Metric          | Control | Treatment | Δ (pp) | p‑value |
+| --------------- | ------- | --------- | ------ | ------- |
+| Day‑1 retention | 44.8 %  | 44.2 %    | –0.6   | 0.03    |
+| Day‑7 retention | 19.0 %  | 18.2 %    | –0.8   | <0.001  |
+
+The treatment group under‑performs the control on both KPIs; the Day‑7 difference is both statistically and practically significant.
+
+---
+
+## 6. Recommendation
+
+Retain the gate at **level 30**. The tested change harms retention without showing any long‑term benefit.
+
+---
+
+## 7. Reproducing the analysis
+
+```bash
+# Clone repository
+$ git clone https://github.com/AMVukojevic/product-analyst-ab-test.git
+$ cd product-analyst-ab-test
+
+# Create virtual environment (or use conda)
+$ python -m venv venv && source venv/bin/activate    # Windows: venv\Scripts\activate
+
+# Install dependencies
+$ pip install -r requirements.txt
+
+# Launch notebook
+$ jupyter notebook notebooks/analysis.ipynb
+```
+
+---
+
+## 8. Repository structure
+
+```
+project-analyst-ab-test/
+├── data/
+│   └── cookie_cats.csv
+├── images/
+│   └── retention_chart.png
+├── notebooks/
+│   └── analysis.ipynb
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 9. Skills demonstrated
+
+* Experiment design and evaluation (A/B testing, bootstrapping)
+* Statistical inference and effect‑size interpretation
+* Data wrangling and visualisation in Python (`pandas`, `numpy`, `matplotlib`, `seaborn`)
+* Translating analytical results into clear product decisions
+
+---
+
+## 10. Next steps
+
+* Segment results by acquisition channel, geography, and device.
+* Measure impact on monetisation KPIs (IAP revenue, ad impressions).
+* Test alternative gate positions (e.g., levels 25 or 35) with sequential testing.
+
+---
+
+## 11. Contact
+
+Prepared by **Ante Vukojević** · [LinkedIn](https://www.linkedin.com/in/ante-vukoj) · [ante.vukojevic@example.com](mailto:ante.vukojevic@example.com)
+
+*This project illustrates my ability to connect rigorous statistical analysis with actionable business recommendations—skills directly applicable to Business Analyst, Data Analyst, and Product Analytics roles.*
