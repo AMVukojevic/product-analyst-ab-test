@@ -107,6 +107,6 @@ project-analyst-ab-test/
 
 ## 11. Contact
 
-Prepared by **Ante Vukojević** · [LinkedIn](https://www.linkedin.com/in/ante-vukoj) · [ante.vukojevic@example.com](mailto:ante.vukojevic@example.com)
+Prepared by **Ante Vukojević** · [LinkedIn](https://www.linkedin.com/in/ante-mislav-vukojevi%C4%87-0a4ba2386/) · [a.m.vukojevic@gmail.com](mailto:a.m.vukojevic@gmail.com)
 
 *This project illustrates my ability to connect rigorous statistical analysis with actionable business recommendations—skills directly applicable to Business Analyst, Data Analyst, and Product Analytics roles.*
